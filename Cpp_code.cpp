@@ -156,5 +156,30 @@ bool login() {
         return false;
     }
 }
+// ---------------- ADD PATIENT ----------------
+void addPatient(Patient *p) {
+    ofstream file("patients.dat", ios::binary | ios::app);
 
+    cout << "Enter Patient ID: ";
+    cin >> p->id;
+    cin.ignore();
+
+    cout << "Enter Name: ";
+    cin.getline(p->name, 50);
+
+    cout << "Enter Age: ";
+    cin >> p->age;
+
+    cout << "Enter Gender: ";
+    cin >> p->gender;
+    cin.ignore();
+
+    cout << "Enter Disease: ";
+    cin.getline(p->disease, 50);
+
+    file.write((char*)p, sizeof(*p));
+    file.close();
+
+    cout << "Patient added successfully!\n";
+}
     
