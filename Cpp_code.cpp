@@ -213,3 +213,30 @@ void viewPatients() {
 
     file.close();
 }
+// ---------------- SEARCH PATIENT ----------------
+void searchPatient() {
+    Patient p;
+    int id;
+    bool found = false;
+
+    ifstream file("patients.dat", ios::binary);
+
+    cout << "Enter Patient ID to search: ";
+    cin >> id;
+
+    while (file.read((char*)&p, sizeof(p))) {
+        if (p.id == id) {
+            cout << "\nName: " << p.name;
+            cout << "\nAge: " << p.age;
+            cout << "\nGender: " << p.gender;
+            cout << "\nDisease: " << p.disease << endl;
+            found = true;
+            break;
+        }
+    }
+
+    if (!found)
+        cout << "Patient not found!\n";
+
+    file.close();
+}
