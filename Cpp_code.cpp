@@ -277,6 +277,32 @@ void updatePatient() {
     cout << (found ? "Updated successfully!\n" : "Patient not found!\n");
     file.close();
 }
+// ---------------- DELETE PATIENT ----------------
+void deletePatient() {
+    Patient p;
+    int id;
+    bool found = false;
 
+    ifstream file("patients.dat", ios::binary);
+    ofstream temp("temp.dat", ios::binary);
+
+    cout << "Enter Patient ID to delete: ";
+    cin >> id;
+
+    while (file.read((char*)&p, sizeof(p))) {
+        if (p.id != id)
+            temp.write((char*)&p, sizeof(p));
+        else
+            found = true;
+    }
+
+    file.close();
+    temp.close();
+
+    remove("patients.dat");
+    rename("temp.dat", "patients.dat");
+
+    cout << (found ? "Deleted successfully!\n" : "Patient not found!\n");
+}
 
 
