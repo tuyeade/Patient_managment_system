@@ -156,6 +156,7 @@ bool login() {
         return false;
     }
 }
+
 // ---------------- ADD PATIENT ----------------
 void addPatient(Patient *p) {
     ofstream file("patients.dat", ios::binary | ios::app);
@@ -182,4 +183,3 @@ void addPatient(Patient *p) {
 
     cout << "Patient added successfully!\n";
 }
-    
